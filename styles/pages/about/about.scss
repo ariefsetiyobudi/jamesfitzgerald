@@ -1,0 +1,25 @@
+.about {
+  @extend %page;
+
+  // background: $color-anti-flash-white;
+  // color: $color-onyx;
+}
+.about__wrapper {
+  padding: 5rem 0 0;
+  @include media('<phone') {
+    padding: 10rem 0 0;
+  }
+}
+
+.about__title {
+  @extend %title-60;
+
+  max-width: 126rem;
+  margin: 5rem auto;
+  text-align: center;
+  line-height: 1.5;
+
+  @include media('<phone') {
+    max-width: 67.7rem;
+  }
+}

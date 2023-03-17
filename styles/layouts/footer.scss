@@ -1,0 +1,30 @@
+.footer{
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+  bottom: 5rem;
+  right: 4rem;
+  z-index: z('footer');
+  @include media("<phone") {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+		width: calc(100% - 8rem);
+    left: 4rem;
+    right: 4rem;
+	}
+}
+.footer__contact{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+.footer__contact__link,
+.footer__copyright{
+  @extend %description-16;
+  font-family: $font-roboto;
+  text-transform: uppercase;
+}
+.footer__contact__link {
+  @extend %link--hidden;
+}

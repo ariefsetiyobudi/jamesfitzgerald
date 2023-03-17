@@ -1,0 +1,15 @@
+extends ../partial/layout
+
+block variables
+  - var template = 'home'
+
+block content
+  .home(data-background="#f7f7f7" data-color="#141414")
+    .home__wrapper
+      .home__titles
+        .home__titles__title=home.data.title
+
+      .home__gallery
+        each media in home.data.gallery
+          figure.home__gallery__media
+            img.home__gallery__media__image(data-src=media.image.url alt=media.image.alt)

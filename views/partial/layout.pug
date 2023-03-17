@@ -1,0 +1,16 @@
+block variables
+doctype html
+html(class= isDesktop ? "desktop" : isTablet ? "tablet" : isPhone ? "phone" : "" lang="en")
+  head
+    include head
+  include analytic
+  body
+    include preloader
+    include navigation
+
+    #content.content(data-template=template)
+      block content
+      //- include overlay
+
+    include footer
+    include scripts
