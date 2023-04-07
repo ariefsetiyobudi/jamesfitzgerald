@@ -1,5 +1,0 @@
-export const COLOR_WHITE = '#ffffff'
-export const COLOR_CHINESE_BLACK = '#141414'
-export const COLOR_BLACK_OLIVE = '#3C3B32'
-export const COLOR_ANTI_FLASH_WHITE = '#f2f2f2'
-export const COLOR_ONYX = '#32333C'

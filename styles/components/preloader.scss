@@ -1,11 +1,9 @@
 .preloader {
 	@extend %cover;
 	@extend %center;
-	background: $color-chinese-black;
-	color: $color-anti-flash-white;
+	background: $color-black;
+	color: $color-cultured;
 	text-align: center;
-  // display: flex;
-  // flex-direction: column;
 	z-index: z("preloader");
 }
 .preloader__text {

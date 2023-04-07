@@ -3,18 +3,19 @@ require('dotenv').config()
 
 const fetch = require('node-fetch')
 const logger = require('morgan')
-const express = require('express')
 const errorHandler = require('errorhandler')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 
-const Prismic = require('@prismicio/client')
-const PrismicH = require('@prismicio/helpers')
-const UAParser = require('ua-parser-js')
-
+const express = require('express')
 const app = express()
 const path = require('path')
 const port = process.env.PORT || 3000
+const fs = require('fs')
+
+const Prismic = require('@prismicio/client')
+const PrismicH = require('@prismicio/helpers')
+const UAParser = require('ua-parser-js')
 
 app.use(logger('dev'))
 app.use(bodyParser.json())
@@ -34,8 +35,14 @@ const initApi = (req) => {
 
 // Link Resolver
 const HandleLinkResolver = (doc) => {
-  if (doc.type === 'about') {
-    return '/about'
+  if (doc.type === 'company') {
+    return '/company'
+  }
+  if (doc.type === 'services') {
+    return '/services'
+  }
+  if (doc.type === 'contact') {
+    return '/contact'
   }
 
   // Default to homepage
@@ -64,28 +71,44 @@ app.set('views', path.join(__dirname, 'views'))
 app.locals.basedir = app.get('views')
 
 const handleRequest = async (api) => {
-  const [meta, preloader, navigation, home, about] =
+  const [meta, preloader, navigation, footer, home, company, services, contact] =
     await Promise.all([
       api.getSingle('meta'),
       api.getSingle('preloader'),
       api.getSingle('navigation'),
+      api.getSingle('footer'),
       api.getSingle('home'),
-      api.getSingle('about')
+      api.getSingle('company'),
+      api.getSingle('services'),
+      api.getSingle('contact')
     ])
 
   const assets = []
 
-  home.data.gallery.forEach((item) => {
+  console.log(contact.data)
+
+  assets.push(home.data.body[0].primary.image.url)
+  assets.push(home.data.body[1].primary.image.url)
+  assets.push(home.data.body[2].primary.image.url)
+  home.data.body[3].items.forEach((item) => {
+    assets.push(item.image.url)
+  })
+  assets.push(home.data.body[4].primary.image.url)
+  assets.push(home.data.body[5].primary.image.url)
+  home.data.body[7].items.forEach((item) => {
     assets.push(item.image.url)
   })
 
   return {
     assets,
     meta,
-    home,
-    about,
+    preloader,
     navigation,
-    preloader
+    footer,
+    home,
+    company,
+    services,
+    contact
   }
 }
 
@@ -98,13 +121,67 @@ app.get('/', async (req, res) => {
   })
 })
 
-app.get('/about', async (req, res) => {
+app.get('/company', async (req, res) => {
   const api = await initApi(req)
   const defaults = await handleRequest(api)
 
-  res.render('pages/about', {
+  res.render('pages/company', {
     ...defaults
   })
+})
+
+app.get('/services', async (req, res) => {
+  const api = await initApi(req)
+  const defaults = await handleRequest(api)
+
+  res.render('pages/services', {
+    ...defaults
+  })
+})
+
+app.get('/contact', async (req, res) => {
+  const api = await initApi(req)
+  const defaults = await handleRequest(api)
+
+  res.render('pages/contact', {
+    ...defaults
+  })
+})
+
+app.get('/video', async (req, res) => {
+  // Ensure there is a range given for the video
+  const range = req.headers.range
+  if (!range) {
+    res.status(400).send('Requires Range header')
+  }
+
+  // get video stats (about 61MB)
+  const videoPath = 'public/pexels-kelly-lacy-6595364.mp4'
+  const videoSize = fs.statSync('public/pexels-kelly-lacy-6595364.mp4').size
+
+  // Parse Range
+  // Example: "bytes=32324-"
+  const CHUNK_SIZE = 10 ** 6 // 1MB
+  const start = Number(range.replace(/\D/g, ''))
+  const end = Math.min(start + CHUNK_SIZE, videoSize - 1)
+
+  // Create headers
+  const contentLength = end - start + 1
+  const headers = {
+    'Content-Range': `bytes ${start}-${end}/${videoSize}`,
+    'Accept-Ranges': 'bytes',
+    'Content-Length': contentLength,
+    'Content-Type': 'video/mp4'
+  }
+
+  // HTTP Status 206 for Partial Content
+  res.writeHead(206, headers)
+
+  // create video read stream for this particular chunk
+  const videoStream = fs.createReadStream(videoPath, { start, end })
+
+  // Stream the video chunk to the client
+  videoStream.pipe(res)
 })
 
 app.listen(port, () => {

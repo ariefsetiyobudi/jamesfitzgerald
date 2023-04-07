@@ -35,11 +35,26 @@
 // Home
 
 @import './pages/home/home';
+@import './pages/home/content';
+@import './pages/home/gallery';
+@import './pages/home/result';
 
-// About
+// Company
 
-@import './pages/about/about';
-@import './pages/about/content';
-@import './pages/about/gallery';
-@import './pages/about/highlight';
+@import './pages/company/company';
+@import './pages/company/content';
+@import './pages/company/gallery';
+@import './pages/company/result';
+
+// Services
+
+@import './pages/services/services';
+@import './pages/services/content';
+@import './pages/services/gallery';
+@import './pages/services/lists';
+@import './pages/services/quality';
+
+// Services
+
+@import './pages/contact/contact';
 

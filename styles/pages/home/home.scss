@@ -1,75 +1,25 @@
 .home {
-	@extend %page;
-	@extend %center;
-	text-align: center;
-
-	background: $color-white;
-	color: $color-chinese-black;
-	overflow: hidden;
-	text-align: center;
-
-  @include media("<phone") {
-    &::before,
-	  &::after {
-		height: 30%;
-	}
-	}
+  @extend %page;
 }
-
 .home__wrapper {
+  @include media('<phone') {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+}
+.embed__responsive__item{
   @extend %cover;
-  @extend %center;
+  z-index: 1;
 }
+.embed__responsive__video{
+  width: 100%;
 
-.home__titles {
-	@extend %title-h1;
-	max-width: 80%;
-	margin: 0 auto;
-	text-align: center;
-  text-transform: uppercase;
-  position: absolute;
-  z-index: 2;
-  -webkit-text-stroke: 1px $color-white;
-
-	@include media("<phone") {
-    font-size: calc(34px + 250 * (100vw - 320px) / 1600);
-    font-weight: 500;
-    line-height: inherit;
-    mix-blend-mode: difference;
-		max-width: 100%;
-	}
-}
-
-.home__link {
-	@extend %description-16;
-
-	letter-spacing: 0.05em;
-	width: 28.84em;
-	height: 6rem;
-	align-items: center;
-	display: flex;
-	justify-content: center;
-	position: absolute;
-	text-transform: uppercase;
-	bottom: 5rem;
-	left: 50%;
-	transform: translateX(-50%);
-	z-index: 2;
-
-	@include media("<phone") {
-		width: 55rem;
-		height: 13.7rem;
-    bottom: 12rem;
-	}
-}
-
-.home__link span {
-  display: inline-block;
-  line-height: 1;
-  position: relative;
-  vertical-align: middle;
-}
-
-.home__link__icon {
-	@extend %cover;
+  @include media('<phone') {
+    position: absolute;
+    height: 100%;
+    width: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }

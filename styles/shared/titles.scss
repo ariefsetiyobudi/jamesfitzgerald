@@ -12,7 +12,7 @@
   font-size: 3rem;
 
   @include media('<phone') {
-    font-size: 5.2rem;
+    font-size: 3.5rem;
   }
 }
 
@@ -62,7 +62,11 @@
 
 %title-h1-l {
   font-family: $font-tomato-grotesk;
-  font-size: calc(34px + 150*(100vw - 320px)/1600)
+  font-size: calc(220*(100vw - 320px)/1600);
+
+  @include media('<phone') {
+    font-size: 12rem;
+  }
 }
 
 %title-h1 {
@@ -77,12 +81,20 @@
 
 %title-h2{
   font-family: $font-tomato-grotesk;
-  font-size: calc(30px + 70*(100vw - 320px)/1600)
+  font-size: calc(90*(100vw - 320px)/1600);
+
+  @include media('<phone') {
+    font-size: 5rem;
+  }
 }
 
 %title-h2-m {
   font-family: $font-tomato-grotesk;
-  font-size: calc(30px + 50*(100vw - 320px)/1600)
+  font-size: calc(70*(100vw - 320px)/1600);
+
+  @include media('<phone') {
+    font-size: 4rem;
+  }
 }
 
 %title-h3 {

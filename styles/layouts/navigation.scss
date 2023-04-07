@@ -1,16 +1,24 @@
 .navigation {
   @extend %cover;
 
-  color: $color-chinese-black;
+  color: $color-white;
   z-index: z('navigation');
   position: fixed;
   pointer-events: none;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  mix-blend-mode: difference;
+
+  @include media('<phone') {
+    display:none;
+  }
 }
 
 .navigation__link {
   font-size: 0;
   position: absolute;
-  left: 4rem;
+  left: 5rem;
   top: 3.7rem;
   width: 12.8rem;
   pointer-events: auto;
@@ -28,11 +36,14 @@
   display: block;
 }
 .navigation__list {
+  position: absolute;
+  right: 5rem;
+  top: 4rem;
+  display: flex;
+  flex-direction: row;
+  gap: 5rem;
 }
 .navigation__list__item {
-  position: absolute;
-  right: 4rem;
-  top: 4.4rem;
   pointer-events: auto;
 }
 .navigation__list__link {

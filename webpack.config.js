@@ -14,13 +14,14 @@ const dirApp = path.join(__dirname, 'app')
 const dirAssets = path.join(__dirname, 'assets')
 const dirShared = path.join(__dirname, 'shared')
 const dirStyles = path.join(__dirname, 'styles')
+const dirVideos = path.join(__dirname, 'videos')
 const dirNode = 'node_modules'
 
 module.exports = {
   entry: [path.join(dirApp, 'index.js'), path.join(dirStyles, 'index.scss')],
 
   resolve: {
-    modules: [dirApp, dirAssets, dirShared, dirStyles, dirNode]
+    modules: [dirApp, dirAssets, dirShared, dirStyles, dirVideos, dirNode]
   },
 
   plugins: [
@@ -32,6 +33,10 @@ module.exports = {
       patterns: [
         {
           from: './shared',
+          to: ''
+        },
+        {
+          from: './videos',
           to: ''
         }
       ]
