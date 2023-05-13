@@ -4,12 +4,11 @@ html(class= isDesktop ? "desktop" : isTablet ? "tablet" : isPhone ? "phone" : ""
   head
     include head
   body
-    //- include preloader
+    include preloader
     include navigation
 
     #content.content(data-template=template)
       block content
-      //- include overlay
 
     //- include footer
     include scripts

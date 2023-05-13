@@ -3,19 +3,18 @@ require('dotenv').config()
 
 const fetch = require('node-fetch')
 const logger = require('morgan')
+const express = require('express')
 const errorHandler = require('errorhandler')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 
-const express = require('express')
-const app = express()
-const path = require('path')
-const port = process.env.PORT || 3000
-const fs = require('fs')
-
 const Prismic = require('@prismicio/client')
 const PrismicH = require('@prismicio/helpers')
 const UAParser = require('ua-parser-js')
+
+const app = express()
+const path = require('path')
+const port = process.env.PORT || 3000
 
 app.use(logger('dev'))
 app.use(bodyParser.json())
@@ -35,14 +34,16 @@ const initApi = (req) => {
 
 // Link Resolver
 const HandleLinkResolver = (doc) => {
-  if (doc.type === 'company') {
-    return '/company'
+  if (doc.type === 'project') {
+    return `/detail/${doc.uid}`
   }
-  if (doc.type === 'services') {
-    return '/services'
+
+  if (doc.type === 'projects') {
+    return '/projects'
   }
-  if (doc.type === 'contact') {
-    return '/contact'
+
+  if (doc.type === 'about') {
+    return '/about'
   }
 
   // Default to homepage
@@ -52,6 +53,7 @@ const HandleLinkResolver = (doc) => {
 // Middleware to inject prismic context
 app.use((req, res, next) => {
   const ua = UAParser(req.headers['user-agent'])
+  const time = new Date()
 
   res.locals.isDesktop = ua.device.type === undefined
   res.locals.isPhone = ua.device.type === 'mobile'
@@ -59,8 +61,8 @@ app.use((req, res, next) => {
 
   res.locals.Link = HandleLinkResolver
   res.locals.PrismicH = PrismicH
-  res.locals.Numbers = (index) => {
-    return index === 0 ? 'One' : index === 1 ? 'Two' : index === 2 ? 'Three' : index === 3 ? 'Four' : ''
+  res.locals.Time = (timezone) => {
+    return time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true, timeZone: timezone })
   }
 
   next()
@@ -71,44 +73,43 @@ app.set('views', path.join(__dirname, 'views'))
 app.locals.basedir = app.get('views')
 
 const handleRequest = async (api) => {
-  const [meta, preloader, navigation, footer, home, company, services, contact] =
+  const [meta, preloader, navigation, footer, home, about, { results: projects }] =
     await Promise.all([
       api.getSingle('meta'),
       api.getSingle('preloader'),
       api.getSingle('navigation'),
       api.getSingle('footer'),
       api.getSingle('home'),
-      api.getSingle('company'),
-      api.getSingle('services'),
-      api.getSingle('contact')
+      api.getSingle('about'),
+      api.query(Prismic.predicate.at('document.type', 'project'), {
+        fetchLinks: 'project.image'
+      })
     ])
 
   const assets = []
 
-  console.log(contact.data)
+  // console.log(navigation.data.list)
 
-  assets.push(home.data.body[0].primary.image.url)
-  assets.push(home.data.body[1].primary.image.url)
-  assets.push(home.data.body[2].primary.image.url)
-  home.data.body[3].items.forEach((item) => {
-    assets.push(item.image.url)
-  })
-  assets.push(home.data.body[4].primary.image.url)
-  assets.push(home.data.body[5].primary.image.url)
-  home.data.body[7].items.forEach((item) => {
-    assets.push(item.image.url)
+  projects.forEach((project) => {
+    assets.push(project.data.thumbnail.url)
+    project.data.body.forEach((item) => {
+      if (item.slice_type === 'gallery') {
+        item.items.forEach((image) => {
+          assets.push(image.image.url)
+        })
+      }
+    })
   })
 
   return {
     assets,
     meta,
+    home,
+    projects,
+    about,
     preloader,
     navigation,
-    footer,
-    home,
-    company,
-    services,
-    contact
+    footer
   }
 }
 
@@ -121,67 +122,38 @@ app.get('/', async (req, res) => {
   })
 })
 
-app.get('/company', async (req, res) => {
+app.get('/about', async (req, res) => {
   const api = await initApi(req)
   const defaults = await handleRequest(api)
 
-  res.render('pages/company', {
+  res.render('pages/about', {
     ...defaults
   })
 })
 
-app.get('/services', async (req, res) => {
+app.get('/projects', async (req, res) => {
   const api = await initApi(req)
   const defaults = await handleRequest(api)
 
-  res.render('pages/services', {
+  res.render('pages/projects', {
     ...defaults
   })
 })
 
-app.get('/contact', async (req, res) => {
+app.get('/detail/:uid', async (req, res) => {
   const api = await initApi(req)
   const defaults = await handleRequest(api)
 
-  res.render('pages/contact', {
-    ...defaults
+  const project = await api.getByUID('project', req.params.uid, {
+    fetchLinks: 'project.title'
   })
-})
 
-app.get('/video', async (req, res) => {
-  // Ensure there is a range given for the video
-  const range = req.headers.range
-  if (!range) {
-    res.status(400).send('Requires Range header')
-  }
+  console.log(project.data.body[1].items)
 
-  // get video stats (about 61MB)
-  const videoPath = 'public/pexels-kelly-lacy-6595364.mp4'
-  const videoSize = fs.statSync('public/pexels-kelly-lacy-6595364.mp4').size
-
-  // Parse Range
-  // Example: "bytes=32324-"
-  const CHUNK_SIZE = 10 ** 6 // 1MB
-  const start = Number(range.replace(/\D/g, ''))
-  const end = Math.min(start + CHUNK_SIZE, videoSize - 1)
-
-  // Create headers
-  const contentLength = end - start + 1
-  const headers = {
-    'Content-Range': `bytes ${start}-${end}/${videoSize}`,
-    'Accept-Ranges': 'bytes',
-    'Content-Length': contentLength,
-    'Content-Type': 'video/mp4'
-  }
-
-  // HTTP Status 206 for Partial Content
-  res.writeHead(206, headers)
-
-  // create video read stream for this particular chunk
-  const videoStream = fs.createReadStream(videoPath, { start, end })
-
-  // Stream the video chunk to the client
-  videoStream.pipe(res)
+  res.render('pages/detail', {
+    ...defaults,
+    project
+  })
 })
 
 app.listen(port, () => {

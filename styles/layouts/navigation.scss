@@ -1,28 +1,38 @@
 .navigation {
   @extend %cover;
 
-  color: $color-white;
   z-index: z('navigation');
   position: fixed;
   pointer-events: none;
   display:flex;
   flex-direction: row;
   justify-content: space-between;
-  mix-blend-mode: difference;
+  height: 6rem;
+  background: #fff;
 
-  @include media('<phone') {
-    display:none;
+  &.open {
+    .navigation__link{
+      @include media('<phone') {
+        color: $color-white!important;
+      }
+    }
   }
 }
 
+.navigation__link{
+  width: 48rem;
+  z-index: 1;
+}
+
 .navigation__link {
-  font-size: 0;
+  // font-size: 0;
   position: absolute;
-  left: 5rem;
-  top: 3.7rem;
-  width: 12.8rem;
+  left: 2.6rem;
+  top: 2rem;
+  width: 48rem;
   pointer-events: auto;
   transition: opacity 0.4s ease;
+  z-index: 1;
 
   &:hover {
     opacity: 0.5;
@@ -30,21 +40,31 @@
 
   @include media('<phone') {
     width: 22rem;
+    font-size: 3.6rem;
   }
 }
-.navigation__link__icon {
-  display: block;
+
+.navigation__timestamp{
+  position: absolute;
+  left: 50rem;
+  top: 2rem;
+  width: calc(50vw - 50rem);
 }
+
 .navigation__list {
   position: absolute;
-  right: 5rem;
-  top: 4rem;
+  right: 2.6rem;
+  top: 2rem;
   display: flex;
   flex-direction: row;
-  gap: 5rem;
+  justify-content: space-between;
+  width: calc(50vw - 3.9rem);
 }
 .navigation__list__item {
   pointer-events: auto;
+  @include media('<phone'){
+    visibility: hidden!important;
+  }
 }
 .navigation__list__link {
   @extend %link--hidden;
@@ -52,4 +72,10 @@
 
   display: block;
   line-height: 1;
+}
+
+
+.navigation__mobile__button,
+.navigation__mobile {
+  display: none;
 }

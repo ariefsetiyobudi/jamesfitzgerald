@@ -1,0 +1,21 @@
+extends ../partial/layout
+
+block variables
+  - var template = 'about'
+
+block content
+  .about(data-background="#ffffff" data-color="#000000")
+    .about__wrapper
+      section.about__description(data-animation="title")!=about.data.description.replace(/\n/g, '<br>')
+
+      each section in about.data.body
+        .about__divider
+        section.about__content__wrapper
+          .about__content__title(data-animation="title")!=section.primary.title
+          .about__content__left
+            span(data-animation="title")!=section.primary.left.replace(/\n/g, '</span><span data-animation="title">')
+          .about__content__right
+            span(data-animation="title")!=section.primary.right.replace(/\n/g, '</span><span data-animation="title">')
+
+      include ../partial/footer
+

@@ -1,0 +1,67 @@
+.detail {
+  @extend %page;
+}
+.detail__wrapper {
+  padding-top: 38rem;
+}
+.detail__content__wrapper{
+  display: flex;
+  flex-direction: row;
+}
+
+.detail__title{
+  @extend %description-34;
+  min-width: 48rem;
+}
+
+.detail__description{
+  @extend %description-34;
+
+  margin-bottom: 5rem;
+}
+
+.detail__info{
+  min-width: 48rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.detail__info__project{
+
+}
+
+.detail__info__project__label{
+  color: $color-argent;
+}
+
+.detail__info__project__item{
+
+}
+
+.detail__info__role{
+
+}
+
+.detail__info__role__label{
+  color: $color-argent;
+}
+
+.detail__info__role__item{
+
+}
+
+.detail__gallery{
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  margin-bottom: 19rem;
+}
+
+.detail__gallery__media{
+
+}
+
+.detail__gallery__media__image{
+  width: 100%;
+}

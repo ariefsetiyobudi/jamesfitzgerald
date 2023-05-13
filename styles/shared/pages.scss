@@ -1,8 +1,9 @@
 %page {
     @extend %cover;
 
-    opacity: 1;
-    visibility: visible;
+    opacity: 0;
+    visibility: hidden;
+    padding: 2rem 2.6rem;
     z-index: z('content');
 }
 

@@ -2,24 +2,60 @@
   @extend %page;
 }
 .home__wrapper {
-  @include media('<phone') {
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-  }
+  padding-top: 38rem;
 }
-.embed__responsive__item{
-  @extend %cover;
-  z-index: 1;
-}
-.embed__responsive__video{
-  width: 100%;
 
-  @include media('<phone') {
-    position: absolute;
-    height: 100%;
-    width: auto;
-    left: 50%;
-    transform: translateX(-50%);
-  }
+.home__description{
+  @extend %description-34;
+
+  margin: 0 0 5rem;
 }
+
+.home__content__wrapper{
+  display: flex;
+  flex-direction: row;
+  gap: 2.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 10rem;
+}
+
+.home__content__list{
+  width: calc(50vw - 3.9rem);
+  margin-bottom: 10rem;
+}
+
+.home__content__link{
+
+}
+
+.home__content__title{
+  @extend %link--hidden;
+  margin-bottom: 0.5rem;
+}
+
+.home__content__media{
+  margin-bottom: 2rem,
+}
+
+.home__content__media__image{
+  width: 100%;
+}
+
+.home__content__link{
+
+}
+
+.home__content__title{
+
+}
+
+.home__content__category__list{
+
+}
+
+.home__content__category__item{
+  display: inline;
+  margin-right: 1rem;
+  color: $color-argent;
+}
+

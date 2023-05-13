@@ -9,10 +9,10 @@ html {
   @extend %cover;
   $vw: 100vw;
   font-size: calc($vw / 1920px * 10px);
-  // position: fixed;
+  position: fixed;
   line-height: 1;
   overflow: hidden;
-  background: $color-cultured;
+  background: $color-white;
   color: $color-black;
 
   @include media('<phone') {
@@ -22,9 +22,9 @@ html {
 
 body {
   @extend %cover;
-  font-family: $font-tomato-grotesk;
-  @extend %description-20;
-  // position: fixed;
+  @extend %description-18;
+  font-family: $suisse-intl;
+  position: fixed;
 }
 
 a {
@@ -59,6 +59,8 @@ canvas {
 
 .content {
   @extend %cover;
+
+  padding: 0 2.6rem;
 }
 
 [data-animation='paragraph'],

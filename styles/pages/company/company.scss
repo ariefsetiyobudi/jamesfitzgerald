@@ -1,8 +1,0 @@
-.company {
-  @extend %page;
-}
-.company__wrapper {
-  @include media('<phone') {
-    padding: 10rem 0 0;
-  }
-}

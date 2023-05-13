@@ -1,36 +1,17 @@
 footer.footer
-  a.scrolltop__button(href="#content") Scroll Top
   .footer__wrapper
-    .footer__content
-      figure.footer__content__media
-        img.footer__content__media__image(alt=footer.data.logo.alt src=footer.data.logo.url)
-    each section in footer.data.body
-      if section.slice_type == 'list'
-        each data in section.items
-          .footer__content
-            .footer__content__title=data.label
-            .footer__content__description
-              span!=data.text_1.replace(/\n/g, '</span><span>')
-              span.mt-20!=data.text_2.replace(/\n/g, '</span><span>')
-      if section.slice_type == 'link'
-        .footer__content
-          .footer__content__title Shortcuts
-          .footer__content__description
-            ul.footer__navigation__list
-              each item in section.items
-                li.footer__navigation__list__item
-                  if item.link.slug !== 'home'
-                    a.footer__navigation__list__link(href=`${item.link.slug}`)=item.text
-                  else 
-                    a.footer__navigation__list__link(href="/")=item.text
-      if section.slice_type == 'download'
-        .footer__content
-          .footer__content__title=section.slice_type
-          figure.footer__content__media
-            img.footer__content__media__image(alt=section.primary.download.alt src=section.primary.download.url)
-  .footer__cc 
-    .footer__copyright!=footer.data.copyright 
-    .footer__credit
-      each credit in footer.data.credit
-        p.footer__credit__text Credit :
-        a.footer__credit__link(href=`${credit.link.url}` target=`${credit.link.target}`)=credit.text
+    .footer__divider
+    .footer__content__wrapper
+      .footer__content
+        span(data-animation="title")!=footer.data.content.replace(/\n/g, '</span><span data-animation="title">')
+      .footer__button
+        a.scrolltop__button(data-animation="title" href="javascript:void(0)" target="")
+          span=footer.data.button
+    .footer__info__wrapper
+      .footer__copyright(data-animation="title")!=footer.data.copyright
+      a.footer__mail(data-animation="title" href=`mailto:${footer.data.mail}` target=`_blank`)
+        span!=footer.data.mail
+      .footer__info__box
+        each social in footer.data.social
+          a.footer__social(data-animation="title" href=`${social.link.url}` target=`${social.link.target}`)
+            span=social.label

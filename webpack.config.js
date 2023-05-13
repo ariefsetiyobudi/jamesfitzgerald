@@ -34,10 +34,6 @@ module.exports = {
         {
           from: './shared',
           to: ''
-        },
-        {
-          from: './videos',
-          to: ''
         }
       ]
     }),
