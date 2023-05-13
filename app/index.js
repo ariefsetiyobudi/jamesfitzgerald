@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-new */
+import GSAP from 'gsap'
 import NormalizeWheel from 'normalize-wheel'
 
 import each from 'lodash/each'
@@ -19,6 +20,7 @@ class App {
   constructor () {
     this.createContent()
     this.createCanvas()
+    this.createCursor()
     this.createPreloader()
     this.createNavigation()
     this.createPages()
@@ -38,6 +40,39 @@ class App {
         fontSize: 3
       })
     }
+  }
+
+  createCursor () {
+    GSAP.set(document.querySelector('.cursor'), { force3D: true })
+    document.addEventListener('mousemove', (e) => {
+      const x = e.clientX
+      const y = e.clientY
+
+      GSAP.to(document.querySelector('.cursor'), {
+        autoAlpha: 1,
+        x: x - 0,
+        y: y - 0,
+        ease: 'power3'
+      })
+    })
+
+    document.body.addEventListener('mouseleave', () => {
+      GSAP.to(document.querySelector('.cursor'), {
+        autoAlpha: 1,
+        scale: 0,
+        duration: 0.1,
+        ease: 'none'
+      })
+    })
+
+    document.body.addEventListener('mouseenter', () => {
+      GSAP.to(document.querySelector('.cursor'), {
+        autoAlpha: 1,
+        scale: 1,
+        duration: 0.1,
+        ease: 'none'
+      })
+    })
   }
 
   createCanvas () {

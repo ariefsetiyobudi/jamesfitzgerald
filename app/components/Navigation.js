@@ -38,6 +38,10 @@ export default class Navigation extends Component {
       background: COLOR_WHITE,
       color: COLOR_BLACK
     })
+
+    GSAP.to(document.querySelector('.cursor'), {
+      background: COLOR_BLACK
+    })
   }
 
   darkMode () {
@@ -49,6 +53,10 @@ export default class Navigation extends Component {
     GSAP.to(document.querySelector('#content'), {
       background: COLOR_BLACK,
       color: COLOR_WHITE
+    })
+
+    GSAP.to(document.querySelector('.cursor'), {
+      background: COLOR_WHITE
     })
   }
 

@@ -1,0 +1,18 @@
+.cursor {
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  background-color: $color-black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  will-change: transform;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  z-index: z("cursor");
+
+  @include media("<phone") {
+		display: none;
+	}
+}
