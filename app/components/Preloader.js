@@ -53,7 +53,7 @@ export default class Preloader extends Component {
       const span = element.querySelectorAll('span')
       this.animateIn.fromTo(element, {
         autoAlpha: 0,
-        y: '100%'
+        y: '50%'
       }, {
         autoAlpha: 1,
         delay: 0.2 * percent,
@@ -62,18 +62,17 @@ export default class Preloader extends Component {
           GSAP.fromTo(span, {
             autoAlpha: 0,
             display: 'inline-block',
-            y: '100%'
+            y: '50%'
           }, {
             autoAlpha: 1,
             delay: 0.2,
             display: 'inline-block',
             duration: 1,
-            ease: 'back.inOut',
-            stagger: 0.015,
+            ease: 'expo.in',
             y: '0%'
           })
         },
-        ease: 'expo.inOut',
+        ease: 'expo.in',
         y: '0%'
       }, 'start')
     }
@@ -133,13 +132,12 @@ export default class Preloader extends Component {
               delay: 0.2,
               display: 'inline-block',
               duration: 1,
-              ease: 'back.inOut',
-              stagger: 0.015,
-              y: '-100%'
+              ease: 'expo.inOut',
+              y: '-50%'
             })
           },
           ease: 'expo.inOut',
-          y: '-100%'
+          y: '-50%'
         }, 'start')
       }
       )
