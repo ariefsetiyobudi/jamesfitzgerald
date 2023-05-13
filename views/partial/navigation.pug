@@ -9,7 +9,7 @@ nav.navigation
         if item.link.link_type == 'Document'
           a.navigation__list__link(href=Link(item.link))=item.label
         else
-          a.navigation__list__link(href="javascript:void(0)" target="")=item.label
+          a#switch.navigation__list__link.lights__off(href="javascript:void(0)" target="")=item.label
   a.navigation__mobile__button(href="javascript:void(0)" target="")
     span.navigation__mobile__menu
     span.navigation__mobile__menu

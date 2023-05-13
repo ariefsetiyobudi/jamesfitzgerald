@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import GSAP from 'gsap'
 import Component from 'classes/Component'
-import { COLOR_WHITE, COLOR_BLACK } from 'utils/color'
+import { COLOR_BLACK, COLOR_WHITE, COLOR_ARGENT, COLOR_GRAY_X_ELEVEN, COLOR_OLD_SILVER } from 'utils/color'
 
 export default class Navigation extends Component {
   constructor ({ template }) {
@@ -10,13 +10,14 @@ export default class Navigation extends Component {
       element: '.navigation',
       elements: {
         logo: '.navigation__link',
+        timestamp: '.navigation__timestamp',
         items: '.navigation__list__item',
         links: '.navigation__list__link',
         mobileButton: '.navigation__mobile__button',
         mobileButtonLines: '.navigation__mobile__menu',
         mobileMenu: '.navigation__mobile',
         mobileItem: '.navigation__mobile__list__item',
-        switchButton: 'input[type=checkbox]'
+        switchButton: '#switch'
       }
     })
 
@@ -24,122 +25,46 @@ export default class Navigation extends Component {
   }
 
   onChange (template) {
-    // if (template === 'about') {
-    //   GSAP.to(this.element, {
-    //     color: COLOR_WHITE
-    //   })
-    // } else {
-    //   GSAP.to(this.element, {
-    //     color: COLOR_BLACK
-    //   })
-    // }
-
     this.template = template
-
-    // this.switchEvents()
   }
 
-  // lightMode () {
-  //   GSAP.to(document.querySelector('.navigation__mobile'), {
-  //     background: COLOR_WHITE,
-  //     color: COLOR_WHITE
-  //   })
+  lightMode () {
+    GSAP.to(this.element, {
+      background: COLOR_WHITE,
+      color: COLOR_BLACK
+    })
 
-  //   GSAP.to(document.querySelector('#content'), {
-  //     background: COLOR_CULTURED,
-  //     color: COLOR_BLACK
-  //   })
+    GSAP.to(document.querySelector('#content'), {
+      background: COLOR_WHITE,
+      color: COLOR_BLACK
+    })
+  }
 
-  //   if (this.template === 'home') {
-  //     GSAP.to(this.elements.logo, {
-  //       color: COLOR_WHITE
-  //     })
+  darkMode () {
+    GSAP.to(this.element, {
+      background: COLOR_BLACK,
+      color: COLOR_WHITE
+    })
 
-  //     GSAP.to(this.elements.mobileButtonLines, {
-  //       background: COLOR_WHITE
-  //     })
+    GSAP.to(document.querySelector('#content'), {
+      background: COLOR_BLACK,
+      color: COLOR_WHITE
+    })
+  }
 
-  //     GSAP.to(this.elements.mobileMenu, {
-  //       color: COLOR_WHITE
-  //     })
-
-  //     GSAP.to(this.element, {
-  //       color: COLOR_WHITE
-  //     })
-  //   } else {
-  //     GSAP.to(this.elements.logo, {
-  //       color: COLOR_WHITE
-  //     })
-
-  //     GSAP.to(this.elements.mobileButtonLines, {
-  //       background: COLOR_WHITE
-  //     })
-
-  //     GSAP.to(this.elements.mobileMenu, {
-  //       color: COLOR_WHITE
-  //     })
-
-  //     GSAP.to(this.element, {
-  //       color: COLOR_WHITE
-  //     })
-  //   }
-  // }
-
-  // darkMode () {
-  //   GSAP.to(document.querySelector('.navigation__mobile'), {
-  //     background: COLOR_BLACK,
-  //     color: COLOR_WHITE
-  //   })
-
-  //   GSAP.to(document.querySelector('#content'), {
-  //     background: COLOR_BLACK,
-  //     color: COLOR_WHITE
-  //   })
-
-  //   if (this.template === 'home') {
-  //     GSAP.to(this.elements.logo, {
-  //       color: COLOR_WHITE
-  //     })
-  //     GSAP.to(this.elements.mobileButtonLines, {
-  //       background: COLOR_WHITE
-  //     })
-
-  //     GSAP.to(this.elements.mobileMenu, {
-  //       color: COLOR_WHITE
-  //     })
-
-  //     GSAP.to(this.element, {
-  //       color: COLOR_WHITE
-  //     })
-  //   } else {
-  //     GSAP.to(this.elements.logo, {
-  //       color: COLOR_WHITE
-  //     })
-  //     GSAP.to(this.elements.mobileButtonLines, {
-  //       background: COLOR_WHITE
-  //     })
-
-  //     GSAP.to(this.elements.mobileMenu, {
-  //       color: COLOR_BLACK
-  //     })
-
-  //     GSAP.to(this.element, {
-  //       color: COLOR_WHITE
-  //     })
-  //   }
-  // }
-
-  // switchEvents () {
-  //   if (this.elements.switchButton.checked) {
-  //     document.querySelector('#content').setAttribute('mode', 'dark')
-  //     document.querySelector('.mode label').innerText = 'Dark'
-  //     this.darkMode()
-  //   } else {
-  //     document.querySelector('#content').setAttribute('mode', 'light')
-  //     document.querySelector('.mode label').innerText = 'Light'
-  //     this.lightMode()
-  //   }
-  // }
+  switchEvents () {
+    if (this.elements.switchButton.classList.contains('lights__off')) {
+      this.elements.switchButton.classList.remove('lights__off')
+      this.elements.switchButton.classList.add('lights__on')
+      this.elements.switchButton.innerText = 'Lights On'
+      this.darkMode()
+    } else {
+      this.elements.switchButton.classList.remove('lights__on')
+      this.elements.switchButton.classList.add('lights__off')
+      this.elements.switchButton.innerText = 'Lights Off'
+      this.lightMode()
+    }
+  }
 
   menuEvents () {
     this.element.classList.toggle('open')
@@ -149,13 +74,13 @@ export default class Navigation extends Component {
 
   addEventListeners () {
     this.menuEvent = this.menuEvents.bind(this)
-    // this.switchEvent = this.switchEvents.bind(this)
+    this.switchEvent = this.switchEvents.bind(this)
 
     this.elements.mobileButton.addEventListener('click', this.menuEvent)
     this.elements.mobileItem.forEach((item) => {
       item.addEventListener('click', this.menuEvent)
     })
-    // this.elements.switchButton.addEventListener('change', this.switchEvent)
+    this.elements.switchButton.addEventListener('click', this.switchEvent)
   }
 
   removeEventListeners () {
@@ -163,6 +88,6 @@ export default class Navigation extends Component {
     this.elements.mobileItem.forEach((item) => {
       item.removeEventListener('click', this.menuEvent)
     })
-    // this.elements.switchButton.removeEventListener('change', this.switchEvent)
+    this.elements.switchButton.removeEventListener('click', this.switchEvent)
   }
 }
