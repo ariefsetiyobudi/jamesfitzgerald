@@ -29,7 +29,7 @@
 }
 
 .about__content__left{
-  width: 45rem;
+  width: calc(50vw - 49.3rem);
   display: flex;
   flex-direction: column;
 
@@ -41,7 +41,7 @@
 }
 
 .about__content__right{
-  width: 45rem;
+  width: calc(50vw - 49.3rem);
   display: flex;
   flex-direction: column;
 
