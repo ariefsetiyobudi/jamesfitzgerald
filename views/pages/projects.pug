@@ -18,9 +18,12 @@ block content
                   .projects__content__title(data-animation="title")=project.data.title
                 .projects__content__category__list
                   each categories in project.data.body
-                    each list in categories.items
-                      if list.category
-                        .projects__content__category__item(data-animation="title")!=list.category
+                      each list, index in categories.items
+                        if list.category
+                          if index < 2
+                            .projects__content__category__item(data-animation="title")!=`${list.category},`
+                          else
+                            .projects__content__category__item(data-animation="title")!=`${list.category}`
 
       include ../partial/footer
 
