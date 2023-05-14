@@ -24,7 +24,6 @@
 
 .projects__content__title{
   @extend %link--hidden;
-  margin-bottom: 0.5rem;
 }
 
 .projects__content__media{
@@ -49,7 +48,6 @@
 
 .projects__content__category__item{
   display: inline;
-  margin-right: 1rem;
   color: $color-argent;
 }
 

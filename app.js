@@ -62,7 +62,13 @@ app.use((req, res, next) => {
   res.locals.Link = HandleLinkResolver
   res.locals.PrismicH = PrismicH
   res.locals.Time = (timezone) => {
-    return time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true, timeZone: timezone })
+    const timeLength = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true, timeZone: timezone }).length
+    const timeShow = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true, timeZone: timezone })
+    if (timeLength > 7) {
+      return timeShow
+    } else {
+      return '0' + timeShow
+    }
   }
 
   next()
@@ -73,7 +79,7 @@ app.set('views', path.join(__dirname, 'views'))
 app.locals.basedir = app.get('views')
 
 const handleRequest = async (api) => {
-  const [meta, preloader, navigation, footer, home, about, { results: projects }] =
+  const [meta, preloader, navigation, footer, home, about, projects, { results: projectList }] =
     await Promise.all([
       api.getSingle('meta'),
       api.getSingle('preloader'),
@@ -81,6 +87,7 @@ const handleRequest = async (api) => {
       api.getSingle('footer'),
       api.getSingle('home'),
       api.getSingle('about'),
+      api.getSingle('projects'),
       api.query(Prismic.predicate.at('document.type', 'project'), {
         fetchLinks: 'project.image'
       })
@@ -88,9 +95,9 @@ const handleRequest = async (api) => {
 
   const assets = []
 
-  // console.log(navigation.data.list)
+  // console.log(projects.data.projects)
 
-  projects.forEach((project) => {
+  projectList.forEach((project) => {
     assets.push(project.data.thumbnail.url)
     project.data.body.forEach((item) => {
       if (item.slice_type === 'gallery') {
@@ -106,6 +113,7 @@ const handleRequest = async (api) => {
     meta,
     home,
     projects,
+    projectList,
     about,
     preloader,
     navigation,
@@ -147,8 +155,6 @@ app.get('/detail/:uid', async (req, res) => {
   const project = await api.getByUID('project', req.params.uid, {
     fetchLinks: 'project.title'
   })
-
-  console.log(project.data.body[1].items)
 
   res.render('pages/detail', {
     ...defaults,

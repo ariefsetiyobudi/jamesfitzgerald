@@ -7,19 +7,20 @@ block content
   .projects(data-background="#ffffff" data-color="#000000")
     .projects__wrapper
       section.projects__content__wrapper
-        each project in projects
-          if project.type == 'project'
-            .projects__content__list
-              a.projects__content__link(href=`/detail/${project.uid}`)
-                figure.projects__content__media
-                  img.projects__content__media__image(data-animation="highlight" alt=project.data.thumbnail.alt data-src=project.data.thumbnail.url)
-              a.projects__content__link(href=`/detail/${project.uid}`)
-                .projects__content__title(data-animation="title")=project.data.title
-              .projects__content__category__list
-                each categories in project.data.body
-                  each list in categories.items
-                    if list.category
-                      .projects__content__category__item(data-animation="title")!=list.category
+        each item in projects.data.projects
+          each project in projectList
+            if project.uid == item.project.uid
+              .projects__content__list
+                a.projects__content__link(href=`/detail/${project.uid}`)
+                  figure.projects__content__media
+                    img.projects__content__media__image(data-animation="highlight" alt=project.data.thumbnail.alt data-src=project.data.thumbnail.url)
+                a.projects__content__link(href=`/detail/${project.uid}`)
+                  .projects__content__title(data-animation="title")=project.data.title
+                .projects__content__category__list
+                  each categories in project.data.body
+                    each list in categories.items
+                      if list.category
+                        .projects__content__category__item(data-animation="title")!=list.category
 
       include ../partial/footer
 

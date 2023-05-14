@@ -33,7 +33,7 @@
 
   position: absolute;
   top: 2.6rem;
-  right: 2.6rem;
+  right: 0;
 }
 
 .scrolltop__button{
@@ -56,7 +56,7 @@
 .footer__info__box{
   display: flex;
   justify-content: flex-end;
-  width: calc(50vw - 3.9rem);
+  width: calc(50vw - 3.2rem);
 }
 
 .footer__copyright{

@@ -30,7 +30,6 @@
 
 .home__content__title{
   @extend %link--hidden;
-  margin-bottom: 0.5rem;
 }
 
 .home__content__media{
@@ -55,7 +54,6 @@
 
 .home__content__category__item{
   display: inline;
-  margin-right: 1rem;
   color: $color-argent;
 }
 

@@ -34,10 +34,6 @@
   transition: opacity 0.4s ease;
   z-index: 1;
 
-  &:hover {
-    opacity: 0.5;
-  }
-
   @include media('<phone') {
     width: 22rem;
     font-size: 3.6rem;
@@ -46,7 +42,7 @@
 
 .navigation__timestamp{
   position: absolute;
-  left: 50rem;
+  left: 50.6rem;
   top: 2rem;
   width: calc(50vw - 50rem);
 }
@@ -72,11 +68,15 @@
   }
 }
 .navigation__list__link {
-  @extend %link--hidden;
-  @extend %title-20;
+  @extend %description-17;
 
   display: block;
   line-height: 1;
+  transition: opacity 0.4s ease;
+
+  &:hover {
+    opacity: 0.5;
+  }
 }
 
 

@@ -9,21 +9,24 @@ block content
       section.home__description(data-animation="title")!=home.data.description.replace(/\n/g, '<br>')
 
       section.home__content__wrapper
-        each project in projects
-          if project.type == 'project'
-            .home__content__list
-              a.home__content__link(href=`/detail/${project.uid}`)
-                figure.home__content__media
-                  img.home__content__media__image(data-animation="highlight" alt=project.data.thumbnail.alt data-src=project.data.thumbnail.url)
-              a.home__content__link(href=`/detail/${project.uid}`)
-                .home__content__title(data-animation="title")=project.data.title
-              .home__content__category__list
-                each categories in project.data.body
-                  each list, index in categories.items
-                    if list.category
-                      if index < 2
-                        .home__content__category__item(data-animation="title")!=`${list.category},`
-                      else
-                        .home__content__category__item(data-animation="title")!=`${list.category}`
+        each homeProjects in home.data.body
+          each item in homeProjects.items
+
+            each project in projectList
+              if project.uid == item.project.uid
+                .home__content__list
+                  a.home__content__link(href=`/detail/${project.uid}`)
+                    figure.home__content__media
+                      img.home__content__media__image(data-animation="highlight" alt=project.data.thumbnail.alt data-src=project.data.thumbnail.url)
+                  a.home__content__link(href=`/detail/${project.uid}`)
+                    .home__content__title(data-animation="title")=project.data.title
+                  .home__content__category__list
+                    each categories in project.data.body
+                      each list, index in categories.items
+                        if list.category
+                          if index < 2
+                            .home__content__category__item(data-animation="title")!=`${list.category},`
+                          else
+                            .home__content__category__item(data-animation="title")!=`${list.category}`
 
       include ../partial/footer
