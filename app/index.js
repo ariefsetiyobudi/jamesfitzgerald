@@ -21,7 +21,7 @@ class App {
     this.createContent()
     this.createCanvas()
     this.createCursor()
-    this.createPreloader()
+    // this.createPreloader()
     this.createNavigation()
     this.createPages()
     this.preventLandscape()
@@ -109,6 +109,7 @@ class App {
     }
     this.page = this.pages[this.template]
     this.page.create()
+    this.page.show()
   }
 
   // Events

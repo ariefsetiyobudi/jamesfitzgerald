@@ -25,6 +25,12 @@ export default class Navigation extends Component {
   }
 
   onChange (template) {
+    if (template === 'about') {
+      this.darkMode()
+    } else {
+      this.lightMode()
+    }
+
     this.template = template
   }
 
