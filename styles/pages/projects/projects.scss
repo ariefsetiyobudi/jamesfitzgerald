@@ -10,12 +10,12 @@
   flex-direction: row;
   gap: 2.6rem;
   flex-wrap: wrap;
-  margin-bottom: 10rem;
+  margin-bottom: 14rem;
 }
 
 .projects__content__list{
   width: calc(50vw - 3.9rem);
-  margin-bottom: 10rem;
+  margin-bottom: 5rem;
 
   @include media('<phone') {
     width: 100%;

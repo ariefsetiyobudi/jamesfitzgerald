@@ -32,6 +32,10 @@
       }
     }
   }
+
+  @include media('<phone') {
+    padding-top: 5rem;
+  }
 }
 
 .footer__button {
@@ -42,6 +46,10 @@
   position: absolute;
   top: 2.6rem;
   right: 0;
+
+  @include media('<phone') {
+    top: 5rem;
+  }
 }
 
 .scrolltop__button{

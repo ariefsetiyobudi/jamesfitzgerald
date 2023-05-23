@@ -19,9 +19,14 @@
   margin-bottom: 19rem;
 
   &:first-of-type{
+    margin-bottom: 5rem;
     .about__content__title{
       @extend %description-30-5;
     }
+  }
+
+  @include media('<phone') {
+    margin-top: 5rem;
   }
 }
 
@@ -37,6 +42,12 @@
 .about__content__description{
   @extend %description-30-5;
   max-width: 92.4rem;
+
+  br{
+    content: "";
+    display: block;
+    height: 2.5rem;
+  }
 }
 
 .about__content__left{

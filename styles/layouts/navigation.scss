@@ -22,11 +22,15 @@
   @extend %description-17;
   position: absolute;
   left: 2.6rem;
-  top: 2.6rem;
+  top: 2rem;
   width: 48rem;
   pointer-events: auto;
   transition: opacity 0.4s ease;
   z-index: 1;
+
+  @include media('<phone') {
+    top: 2.6rem;
+  }
 }
 
 .navigation__timestamp{
