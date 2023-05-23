@@ -34,8 +34,12 @@ block content
             each content in project.data.body
               if content.slice_type == 'gallery'
                 each media in content.items
-                  figure.detail__gallery__media
-                    img.detail__gallery__media__image(data-animation="highlight" alt=media.image.alt data-src=media.image.url)
+                  if media.image.dimensions.width > media.image.dimensions.height
+                    figure.detail__gallery__media
+                      img.detail__gallery__media__image(data-animation="highlight" alt=media.image.alt data-src=media.image.url)
+                  else
+                    figure.detail__gallery__media--2
+                      img.detail__gallery__media__image(data-animation="highlight" alt=media.image.alt data-src=media.image.url)
 
       include ../partial/footer
 

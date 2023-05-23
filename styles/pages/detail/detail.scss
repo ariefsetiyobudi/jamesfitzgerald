@@ -64,13 +64,19 @@
 
 .detail__gallery{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 3rem;
   margin-bottom: 19rem;
 }
 
 .detail__gallery__media{
+  display: inline-block;
+}
 
+.detail__gallery__media--2{
+  display: inline-block;
+  width: calc(50% - 1.5rem);
 }
 
 .detail__gallery__media__image{
