@@ -112,28 +112,20 @@
   position: fixed;
   background: $color-white;
   pointer-events: initial;
-  // transform: translateY(-100%);
-  // transition: 1500ms ease;
-  // @include media('<phone'){
-  //   &.open{
-  //     display: block;
-      // transform: translateY(0);
-    // }
-  // }
 }
 
 .navigation__mobile__wrapper{
   display: flex;
   flex-direction: column;
+  gap: 14rem;
   position: relative;
   height: 100%;
-  padding: 24.8rem 2.6rem;
+  padding: 24.8rem 2.6rem 2.6rem;
 }
 
 .navigation__mobile__list{
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
   font-size: 5.8rem;
 }
 
@@ -153,13 +145,11 @@
 .navigation__mobile__social{
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  padding-top: 10rem;
 }
 
 .navigation__mobile__social__item{
   color: $color-gray-x-eleven;
-  font-size: 3.4rem;
+  font-size: 3.3rem;
   overflow: hidden;
 }
 

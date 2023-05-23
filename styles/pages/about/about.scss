@@ -3,6 +3,10 @@
 }
 .about__wrapper {
   padding-top: 38rem;
+
+  @include media('<phone') {
+    padding-top: 0;
+  }
 }
 
 .about__divider{
@@ -19,9 +23,15 @@
   margin-bottom: 19rem;
 
   &:first-of-type{
+    margin-top: 0;
     margin-bottom: 5rem;
     .about__content__title{
       @extend %description-30-5;
+
+      @include media('<phone') {
+        padding: 15rem 0;
+        margin: 5rem 0 0;
+      }
     }
   }
 

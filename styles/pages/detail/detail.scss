@@ -7,7 +7,11 @@
   }
 }
 .detail__wrapper {
-  padding-top: 38.5rem;
+  padding-top: 38rem;
+
+  @include media('<phone') {
+    padding-top: 0;
+  }
 }
 .detail__content__wrapper{
   display: flex;
@@ -17,12 +21,22 @@
   @include media('<phone') {
     flex-direction: column;
     gap: 5rem;
+    margin-top: 5rem;
+
+    &:first-of-type{
+      gap: 0;
+    }
   }
 }
 
 .detail__title{
   @extend %description-30-5;
   min-width: 48rem;
+
+  @include media('<phone') {
+    padding: 15rem 0;
+    margin: 0;
+  }
 }
 
 .detail__description{
