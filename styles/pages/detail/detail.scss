@@ -21,7 +21,6 @@
   @include media('<phone') {
     flex-direction: column;
     gap: 5rem;
-    margin-top: 5rem;
 
     &:first-of-type{
       gap: 0;
@@ -34,7 +33,7 @@
   min-width: 48rem;
 
   @include media('<phone') {
-    padding: 15rem 0;
+    padding: 20rem 0 15rem;
     margin: 0;
   }
 }
