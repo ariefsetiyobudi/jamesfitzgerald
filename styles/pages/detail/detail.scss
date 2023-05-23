@@ -68,6 +68,10 @@
   flex-wrap: wrap;
   gap: 3rem;
   margin-bottom: 19rem;
+
+  @include media('<phone') {
+    gap: 2.6rem;
+  }
 }
 
 .detail__gallery__media{
@@ -77,6 +81,10 @@
 .detail__gallery__media--2{
   display: inline-block;
   width: calc(50% - 1.5rem);
+
+  @include media('<phone') {
+    width: calc(50% - 1.3rem);
+  }
 }
 
 .detail__gallery__media__image{
