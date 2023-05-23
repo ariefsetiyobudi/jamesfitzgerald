@@ -17,21 +17,27 @@
 }
 
 .footer__content{
-  @extend %description-34;
+  @extend %description-30-5;
 
   padding: 2.6rem 0 40rem;
 
-  span[data-animation="title"]{
+  span[data-animation="title"] {
     display: block;
 
-    &:nth-child(2){
+    &:nth-child(2) {
       color: $color-argent;
+
+      a {
+        @extend %link--hidden;
+      }
     }
   }
 }
 
 .footer__button {
-  @extend %description-34;
+  opacity: 0;
+  visibility: hidden;
+  @extend %description-30-5;
 
   position: absolute;
   top: 2.6rem;
@@ -53,6 +59,10 @@
   flex-direction: row;
   justify-content: space-between;
   color: $color-argent;
+
+  @include media('<phone') {
+    width: 100%;
+  }
 }
 
 .footer__info__box{
@@ -63,12 +73,21 @@
 
 .footer__copyright{
   width: 48rem;
+
+  @include media('<phone') {
+    width: unset;
+  }
 }
 
 .footer__mail{
   width: calc(50vw - 50rem);
+
   span{
     @extend %link--hidden;
+  }
+
+  @include media('<phone') {
+    display: none;
   }
 }
 

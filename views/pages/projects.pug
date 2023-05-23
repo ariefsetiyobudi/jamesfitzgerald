@@ -15,12 +15,13 @@ block content
                   figure.projects__content__media
                     img.projects__content__media__image(data-animation="highlight" alt=project.data.thumbnail.alt data-src=project.data.thumbnail.url)
                 a.projects__content__link(href=`/detail/${project.uid}`)
-                  .projects__content__title(data-animation="title")=project.data.title
+                  .projects__content__title(data-animation="title")=item.label
+                  //- .projects__content__title(data-animation="title")=project.data.title
                 .projects__content__category__list
                   each categories in project.data.body
                       each list, index in categories.items
                         if list.category
-                          if index < 2
+                          if index < 2 && categories.items.length > 1
                             .projects__content__category__item(data-animation="title")!=`${list.category},`
                           else
                             .projects__content__category__item(data-animation="title")!=`${list.category}`

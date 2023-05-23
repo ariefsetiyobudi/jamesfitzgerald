@@ -14,9 +14,12 @@ export default class Navigation extends Component {
         items: '.navigation__list__item',
         links: '.navigation__list__link',
         mobileButton: '.navigation__mobile__button',
-        mobileButtonLines: '.navigation__mobile__menu',
+        mobileButtonLabel: '.navigation__mobile__button__label',
         mobileMenu: '.navigation__mobile',
         mobileItem: '.navigation__mobile__list__item',
+        mobileItemLink: '.navigation__mobile__list__link',
+        mobileSocial: '.navigation__mobile__social__item',
+        mobileSocialLink: '.navigation__mobile__social__link',
         switchButton: '#switch'
       }
     })
@@ -28,6 +31,11 @@ export default class Navigation extends Component {
     if (template === 'about') {
       this.darkMode()
     } else {
+      if (template === 'home') {
+        if (this.element.classList.contains('open')) {
+          this.menuEvents()
+        }
+      }
       this.lightMode()
     }
 
@@ -84,6 +92,34 @@ export default class Navigation extends Component {
     this.element.classList.toggle('open')
     this.elements.mobileButton.classList.toggle('open')
     this.elements.mobileMenu.classList.toggle('open')
+    if (this.element.classList.contains('open')) {
+      GSAP.to(this.elements.mobileMenu, {
+        autoAlpha: 1,
+        duration: 1
+      })
+
+      GSAP.fromTo([this.elements.mobileItemLink, this.elements.mobileSocialLink], {
+        y: '100%'
+      }, {
+        delay: 0.5,
+        duration: 1.5,
+        ease: 'expo.out',
+        stagger: {
+          axis: 'y',
+          amount: 1
+        },
+        y: '0%'
+      })
+
+      this.elements.mobileButtonLabel.innerText = 'Close'
+    } else {
+      GSAP.to(this.elements.mobileMenu, {
+        autoAlpha: 0,
+        duration: 1
+      })
+
+      this.elements.mobileButtonLabel.innerText = 'Menu'
+    }
   }
 
   addEventListeners () {

@@ -19,7 +19,8 @@ block content
                     figure.home__content__media
                       img.home__content__media__image(data-animation="highlight" alt=project.data.thumbnail.alt data-src=project.data.thumbnail.url)
                   a.home__content__link(href=`/detail/${project.uid}`)
-                    .home__content__title(data-animation="title")=project.data.title
+                    .home__content__title(data-animation="title")=item.label
+                    //- .home__content__title(data-animation="title")=project.data.title
                   .home__content__category__list
                     each categories in project.data.body
                       each list, index in categories.items

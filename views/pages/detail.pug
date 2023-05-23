@@ -7,8 +7,10 @@ block content
   .detail(data-background="#ffffff" data-color="#000000")
     .detail__wrapper
       section.detail__content__wrapper
-        .detail__title(data-animation="title")!=project.data.title
-        .detail__description(data-animation="title")!=project.data.description.replace(/\n/g, '<br>')
+        if project.data.title
+          .detail__title(data-animation="title")!=project.data.title
+        if project.data.description
+          .detail__description(data-animation="title")!=project.data.description.replace(/\n/g, '<br>')
       section.detail__content__wrapper
         .detail__info
           .detail__info__project
@@ -17,19 +19,23 @@ block content
               .detail__info__project__item(data-animation="title")!=`Client: ${project.data.client}`
             if project.data.agency
               .detail__info__project__item(data-animation="title")!=`Agency: ${project.data.agency}`
+            if project.data.illustrator
+              .detail__info__project__item(data-animation="title")!=`Illustrator: ${project.data.illustrator}`
             if project.data.project
               .detail__info__project__item(data-animation="title")!=`Project: ${project.data.project}`
             if project.data.year
               .detail__info__project__item(data-animation="title")!=`Year: ${project.data.year}`
           .detail__info__role
             .detail__info__role__label(data-animation="title") Role
-            .detail__info__role__item(data-animation="title")!=project.data.role.replace(/\n/g, '<br>')
-        .detail__gallery
-          each content in project.data.body
-            if content.slice_type == 'gallery'
-              each media in content.items
-                figure.detail__gallery__media
-                  img.detail__gallery__media__image(data-animation="highlight" alt=media.image.alt data-src=media.image.url)
+            if project.data.role
+              .detail__info__role__item(data-animation="title")!=project.data.role.replace(/\n/g, '<br>')
+        if project.data.body
+          .detail__gallery
+            each content in project.data.body
+              if content.slice_type == 'gallery'
+                each media in content.items
+                  figure.detail__gallery__media
+                    img.detail__gallery__media__image(data-animation="highlight" alt=media.image.alt data-src=media.image.url)
 
       include ../partial/footer
 

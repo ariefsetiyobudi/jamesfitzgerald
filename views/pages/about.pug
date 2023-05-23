@@ -6,7 +6,9 @@ block variables
 block content
   .about(data-background="#ffffff" data-color="#000000")
     .about__wrapper
-      section.about__description(data-animation="title")!=about.data.description.replace(/\n/g, '<br>')
+      section.about__content__wrapper
+          .about__content__title(data-animation="title")!=about.data.title
+          .about__content__description(data-animation="title")!=about.data.description.replace(/\n/g, '<br>')
 
       each section in about.data.body
         .about__divider

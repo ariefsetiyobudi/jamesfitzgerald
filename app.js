@@ -95,8 +95,6 @@ const handleRequest = async (api) => {
 
   const assets = []
 
-  // console.log(projects.data.projects)
-
   projectList.forEach((project) => {
     assets.push(project.data.thumbnail.url)
     project.data.body.forEach((item) => {

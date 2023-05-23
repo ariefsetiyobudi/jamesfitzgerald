@@ -1,24 +1,34 @@
 .detail {
   @extend %page;
+
+  .footer__button{
+    opacity: 1;
+    visibility: visible;
+  }
 }
 .detail__wrapper {
-  padding-top: 38rem;
+  padding-top: 38.5rem;
 }
 .detail__content__wrapper{
   display: flex;
   flex-direction: row;
+
+  @include media('<phone') {
+    flex-direction: column;
+    gap: 5rem;
+  }
 }
 
 .detail__title{
-  @extend %description-34;
+  @extend %description-30-5;
   min-width: 48rem;
 }
 
 .detail__description{
-  @extend %description-34;
+  @extend %description-30-5;
 
-  margin-bottom: 5rem;
-  max-width: 92.4rem;
+  margin-bottom: 6rem;
+  max-width: 92.5rem;
 }
 
 .detail__info{

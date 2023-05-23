@@ -9,34 +9,24 @@
   justify-content: space-between;
   height: 6rem;
 
-  &.open {
-    .navigation__link{
-      @include media('<phone') {
-        color: $color-white!important;
-      }
-    }
+  &.open{
+    color: $color-black!important;
+  }
+
+  @include media('<phone') {
+    height: 8rem;
   }
 }
 
-.navigation__link{
-  width: 48rem;
-  z-index: 1;
-}
-
 .navigation__link {
-  // font-size: 0;
+  @extend %description-17;
   position: absolute;
   left: 2.6rem;
-  top: 2rem;
+  top: 2.6rem;
   width: 48rem;
   pointer-events: auto;
   transition: opacity 0.4s ease;
   z-index: 1;
-
-  @include media('<phone') {
-    width: 22rem;
-    font-size: 3.6rem;
-  }
 }
 
 .navigation__timestamp{
@@ -44,6 +34,10 @@
   left: 50.6rem;
   top: 2rem;
   width: calc(50vw - 50rem);
+
+  @include media('<phone') {
+    display: none;
+  }
 }
 
 .navigation__list {
@@ -79,7 +73,93 @@
 }
 
 
-.navigation__mobile__button,
-.navigation__mobile {
+// Mobile Navigation
+
+.navigation__mobile__button{
+  @extend %description-17;
   display: none;
+  position: absolute;
+  right: 2.6rem;
+  top: 2.6rem;
+  pointer-events: auto;
+  z-index: z('navigation');
+
+  &.open{
+    .navigation__mobile__menu:first-of-type{
+      transform: rotate(-45deg);
+    }
+
+    .navigation__mobile__menu {
+      background: $color-white!important;
+      transform: rotate(45deg);
+      top: 3rem;
+    }
+  }
+  @include media('<phone'){
+    display: block;
+  }
 }
+
+.navigation__mobile{
+  opacity: 0;
+  visibility: hidden;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background: $color-white;
+  pointer-events: initial;
+  // transform: translateY(-100%);
+  // transition: 1500ms ease;
+  // @include media('<phone'){
+  //   &.open{
+  //     display: block;
+      // transform: translateY(0);
+    // }
+  // }
+}
+
+.navigation__mobile__wrapper{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+  padding: 24.8rem 2.6rem;
+}
+
+.navigation__mobile__list{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 5.8rem;
+}
+
+.navigation__mobile__list__item{
+  color: $color-black;
+  overflow: hidden;
+
+  &:nth-child(2){
+    display: none;
+  }
+}
+
+.navigation__mobile__list__link{
+  @extend %link--hidden;
+}
+
+.navigation__mobile__social{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 10rem;
+}
+
+.navigation__mobile__social__item{
+  color: $color-gray-x-eleven;
+  font-size: 3.4rem;
+  overflow: hidden;
+}
+
+.navigation__mobile__social__link{
+  @extend %link--hidden;
+}
+
