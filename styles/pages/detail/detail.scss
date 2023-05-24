@@ -7,11 +7,7 @@
   }
 }
 .detail__wrapper {
-  padding-top: 38rem;
-
-  @include media('<phone') {
-    padding-top: 0;
-  }
+  padding-top: 40.4rem;
 }
 .detail__content__wrapper{
   display: flex;
@@ -33,7 +29,8 @@
   min-width: 48rem;
 
   @include media('<phone') {
-    padding: 20rem 0 15rem;
+    position:absolute;
+    top: 21.6rem;
     margin: 0;
   }
 }
@@ -83,7 +80,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 3rem;
-  margin-bottom: 14rem;
+  margin-bottom: 12.8rem;
 
   @include media('<phone') {
     gap: 2.6rem;

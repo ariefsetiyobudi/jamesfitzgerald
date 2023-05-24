@@ -2,7 +2,7 @@
   @extend %page;
 }
 .home__wrapper {
-  padding-top: 38rem;
+  padding-top: 40.4rem;
 }
 
 .home__description{
@@ -21,12 +21,12 @@
   flex-direction: row;
   gap: 2.6rem;
   flex-wrap: wrap;
-  margin-bottom: 14rem;
+  margin-bottom: 12.8rem;
 }
 
 .home__content__list{
   width: calc(50vw - 3.9rem);
-  margin-bottom: 5rem;
+  margin-bottom: 5.66rem;
 
   @include media('<phone') {
     width: 100%;
