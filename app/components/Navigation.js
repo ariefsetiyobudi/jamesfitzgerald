@@ -92,31 +92,54 @@ export default class Navigation extends Component {
     this.element.classList.toggle('open')
     this.elements.mobileButton.classList.toggle('open')
     this.elements.mobileMenu.classList.toggle('open')
+    this.animateIn = GSAP.timeline({})
     if (this.element.classList.contains('open')) {
-      GSAP.to(this.elements.mobileMenu, {
-        autoAlpha: 1,
-        duration: 1
-      })
-
-      GSAP.fromTo([this.elements.mobileItemLink, this.elements.mobileSocialLink], {
-        y: '100%'
+      this.animateIn.fromTo(this.elements.mobileMenu, {
+        autoAlpha: 0
       }, {
-        delay: 0.5,
-        duration: 1.5,
+        autoAlpha: 1,
+        duration: 1,
+        onStart: _ => {
+          GSAP.fromTo([this.elements.mobileItemLink, this.elements.mobileSocialLink], {
+            autoAlpha: 0,
+            display: 'inline-block',
+            y: '100%'
+          }, {
+            autoAlpha: 1,
+            delay: 0.2,
+            display: 'inline-block',
+            duration: 1.5,
+            ease: 'expo.out',
+            stagger: {
+              axis: 'y',
+              amount: 1
+            },
+            y: '0%'
+          })
+        },
+        ease: 'expo.out'
+      }, 'start')
+
+      this.elements.mobileButtonLabel.innerText = 'Close'
+    } else {
+      this.animateIn.fromTo([this.elements.mobileItemLink, this.elements.mobileSocialLink], {
+        display: 'inline-block',
+        y: '0%'
+      }, {
+        display: 'inline-block',
+        duration: 0.8,
         ease: 'expo.out',
         stagger: {
           axis: 'y',
           amount: 1
         },
-        y: '0%'
-      })
-
-      this.elements.mobileButtonLabel.innerText = 'Close'
-    } else {
-      GSAP.to(this.elements.mobileMenu, {
-        autoAlpha: 0,
-        duration: 1
-      })
+        y: '-100%',
+        onComplete: _ => {
+          GSAP.to(this.elements.mobileMenu, {
+            autoAlpha: 0
+          })
+        }
+      }, 'complete')
 
       this.elements.mobileButtonLabel.innerText = 'Menu'
     }

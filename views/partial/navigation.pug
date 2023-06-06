@@ -16,14 +16,14 @@ nav.navigation
         each item in navigation.data.list
           li.navigation__mobile__list__item
             if item.link.link_type
-              a.navigation__mobile__list__link(href=Link(item.link))=item.label
+              a.navigation__mobile__list__link(href=Link(item.link) data-animation="paragraph")=item.label
             else
-              a.navigation__mobile__list__link( href="javascript:void(0)" target="")=item.label
+              a.navigation__mobile__list__link( href="javascript:void(0)" target="" data-animation="paragraph")=item.label
         li.navigation__mobile__list__item
-          a.navigation__mobile__list__link(href=`mailto:${footer.data.mail}` target=`_blank`) Contact
+          a.navigation__mobile__list__link(href=`mailto:${footer.data.mail}` target=`_blank` data-animation="paragraph") Contact
       ul.navigation__mobile__social
         each social in footer.data.social
           li.navigation__mobile__social__item
-            a.navigation__mobile__social__link(href=`${social.link.url}` target=`${social.link.target}`)
+            a.navigation__mobile__social__link(href=`${social.link.url}` target=`${social.link.target}` data-animation="paragraph")
               span=social.label
 
