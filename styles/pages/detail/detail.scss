@@ -32,6 +32,17 @@
     position:absolute;
     top: 21.6rem;
     margin: 0;
+    width: 100%;
+  }
+}
+
+.detail__title__wrapper,
+.detail__info__project,
+.detail__info__role {
+  max-width: 27.5rem;
+
+  @include media('<phone') {
+    max-width: 100%;
   }
 }
 

@@ -8,7 +8,8 @@ block content
     .detail__wrapper
       section.detail__content__wrapper
         if project.data.title
-          .detail__title(data-animation="title")!=project.data.title
+          .detail__title
+            .detail__title__wrapper(data-animation="title")!=project.data.title
         if project.data.description
           .detail__description(data-animation="title")!=project.data.description.replace(/\n/g, '<br>')
       section.detail__content__wrapper
