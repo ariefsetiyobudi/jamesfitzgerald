@@ -21,10 +21,10 @@ block content
                   each categories in project.data.body
                       each list, index in categories.items
                         if list.category
-                          if index < 2 && categories.items.length > 1
-                            .projects__content__category__item(data-animation="title")!=`${list.category},`
-                          else
+                          if index == categories.items.length - 1
                             .projects__content__category__item(data-animation="title")!=`${list.category}`
+                          else
+                            .projects__content__category__item(data-animation="title")!=`${list.category},`
 
       include ../partial/footer
 
