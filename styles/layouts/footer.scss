@@ -23,7 +23,7 @@
 .footer__content{
   @extend %description-30-5;
 
-  padding: 2.6rem 0 42.9rem;
+  padding: 1.6rem 0 42.9rem;
 
   span[data-animation="title"] {
     display: block;
@@ -32,7 +32,15 @@
       color: $color-argent;
 
       a {
-        @extend %link--hidden;
+        &:hover {
+          color: $color-old-silver;
+        }
+      }
+    }
+
+    @include media('<phone') {
+      &:nth-child(1) {
+        font-size: 3.6rem;
       }
     }
   }
@@ -57,7 +65,9 @@
 }
 
 .scrolltop__button{
-  @extend %link--hidden;
+  &:hover {
+    color: $color-old-silver;
+  }
 }
 
 .footer__button__top {
@@ -95,7 +105,9 @@
   width: calc(50vw - 50rem);
 
   span{
-    @extend %link--hidden;
+    &:hover {
+      color: $color-old-silver;
+    }
   }
 
   @include media('<phone') {
@@ -108,7 +120,9 @@
   text-align: end;
 
   span{
-    @extend %link--hidden;
+    &:hover {
+      color: $color-old-silver;
+    }
   }
 }
 

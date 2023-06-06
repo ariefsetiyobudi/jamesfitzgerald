@@ -27,7 +27,9 @@
 }
 
 .projects__content__title{
-  @extend %link--hidden;
+  &:hover {
+    color: $color-old-silver;
+  }
 }
 
 .projects__content__media{

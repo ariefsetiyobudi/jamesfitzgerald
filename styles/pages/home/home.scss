@@ -38,7 +38,9 @@
 }
 
 .home__content__title{
-  @extend %link--hidden;
+  &:hover {
+    color: $color-old-silver;
+  }
 }
 
 .home__content__media{

@@ -88,9 +88,7 @@ const handleRequest = async (api) => {
       api.getSingle('home'),
       api.getSingle('about'),
       api.getSingle('projects'),
-      api.query(Prismic.predicate.at('document.type', 'project'), {
-        fetchLinks: 'project.image'
-      })
+      api.getByType('project', { fetchLinks: 'project.image' })
     ])
 
   const assets = []

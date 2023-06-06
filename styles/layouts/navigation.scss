@@ -10,7 +10,7 @@
   height: 6rem;
 
   &.open{
-    color: $color-black!important;
+    color: $color-white!important;
   }
 
   @include media('<phone') {
@@ -110,7 +110,7 @@
   width: 100vw;
   height: 100vh;
   position: fixed;
-  background: $color-white;
+  background: $color-black;
   pointer-events: initial;
 }
 
@@ -130,7 +130,7 @@
 }
 
 .navigation__mobile__list__item{
-  color: $color-black;
+  color: $color-white;
   overflow: hidden;
 
   &:nth-child(2){
@@ -139,7 +139,9 @@
 }
 
 .navigation__mobile__list__link{
-  @extend %link--hidden;
+  &:hover {
+    color: $color-old-silver;
+  }
 }
 
 .navigation__mobile__social{
@@ -148,12 +150,14 @@
 }
 
 .navigation__mobile__social__item{
-  color: $color-gray-x-eleven;
+  color: $color-old-silver;
   font-size: 3.3rem;
   overflow: hidden;
 }
 
 .navigation__mobile__social__link{
-  @extend %link--hidden;
+  &:hover {
+    color: $color-white;
+  }
 }
 
