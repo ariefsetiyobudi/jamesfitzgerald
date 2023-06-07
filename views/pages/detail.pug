@@ -37,8 +37,8 @@ block content
                 each media in content.items
                   if media.image.alt && media.image.alt.substr(0,6) == 'gdrive'
                     .detail__gallery__media
-                      video.detail__gallery__media__image(autoplay loop playsinline muted defaultMuted oncontextmenu="return false;" preload="auto" poster=`${media.image.url}`)
-                        source(src=`https://drive.google.com/u/1/uc?id=${media.image.alt.replace("gdrive-","")}&export=download` type="video/mp4")
+                      video.detail__gallery__media__image(data-animation="highlight" autoplay loop playsinline muted defaultMuted oncontextmenu="return false;" preload="auto" poster=`${media.image.url}`)
+                        source(src=`https://drive.google.com/uc?export=download&id=${media.image.alt.replace("gdrive-","")}` type="video/mp4")
                   else if media.image.dimensions.width > media.image.dimensions.height
                     figure.detail__gallery__media
                       img.detail__gallery__media__image(data-animation="highlight" alt=media.image.alt data-src=media.image.url)
