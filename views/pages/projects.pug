@@ -11,12 +11,16 @@ block content
           each project in projectList
             if project.uid == item.project.uid
               .projects__content__list
-                a.projects__content__link(href=`/detail/${project.uid}`)
+                if project.data.client == '' || project.data.client == null
                   figure.projects__content__media
                     img.projects__content__media__image(data-animation="highlight" alt=project.data.thumbnail.alt data-src=project.data.thumbnail.url)
-                a.projects__content__link(href=`/detail/${project.uid}`)
                   .projects__content__title(data-animation="title")=item.label
-                  //- .projects__content__title(data-animation="title")=project.data.title
+                else
+                  a.projects__content__link(href=`/detail/${project.uid}`)
+                    figure.projects__content__media
+                      img.projects__content__media__image(data-animation="highlight" alt=project.data.thumbnail.alt data-src=project.data.thumbnail.url)
+                  a.projects__content__link(href=`/detail/${project.uid}`)
+                    .projects__content__title(data-animation="title")=item.label
                 .projects__content__category__list
                   each categories in project.data.body
                       each list, index in categories.items

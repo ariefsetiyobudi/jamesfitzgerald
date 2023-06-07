@@ -23,14 +23,13 @@
 }
 
 .projects__content__link{
-
-}
-
-.projects__content__title{
-  &:hover {
-    color: $color-old-silver;
+  .projects__content__title{
+    &:hover {
+      color: $color-old-silver;
+    }
   }
 }
+
 
 .projects__content__media{
   margin-bottom: 2rem,

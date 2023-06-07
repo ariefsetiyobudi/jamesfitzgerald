@@ -34,14 +34,13 @@
 }
 
 .home__content__link{
-
-}
-
-.home__content__title{
-  &:hover {
-    color: $color-old-silver;
+  .home__content__title{
+    &:hover {
+      color: $color-old-silver;
+    }
   }
 }
+
 
 .home__content__media{
   margin-bottom: 2rem,
