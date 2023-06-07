@@ -127,7 +127,7 @@ export default class Navigation extends Component {
         y: '0%'
       }, {
         display: 'inline-block',
-        duration: 0.8,
+        duration: 1.5,
         ease: 'expo.out',
         stagger: {
           axis: 'y',
