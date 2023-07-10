@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="512px" height="512px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g><path style="opacity:1" fill="#fefefe" d="M -0.5,-0.5 C 170.167,-0.5 340.833,-0.5 511.5,-0.5C 511.5,170.167 511.5,340.833 511.5,511.5C 340.833,511.5 170.167,511.5 -0.5,511.5C -0.5,340.833 -0.5,170.167 -0.5,-0.5 Z"/></g>
-<g><path style="opacity:1" fill="#141414" d="M 237.5,10.5 C 324.553,7.45673 395.386,39.4567 450,106.5C 505.003,183.205 515.003,265.539 480,353.5C 437.444,442.229 366.944,491.063 268.5,500C 181.312,502.085 111.145,468.918 58,400.5C 8.61944,328.94 -2.04723,251.94 26,169.5C 61.2337,84.9444 123.734,33.1111 213.5,14C 221.727,13.4205 229.727,12.2538 237.5,10.5 Z"/></g>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1300px" height="1300px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g><path style="opacity:0.998" fill="#090a09" d="M 613.5,10.5 C 813.693,3.72883 982.526,72.3955 1120,216.5C 1238.68,349.342 1294.34,505.342 1287,684.5C 1273.01,876.678 1191.51,1032.85 1042.5,1153C 897.554,1262.66 734.554,1305.33 553.5,1281C 373.83,1250.82 230.997,1162.32 125,1015.5C 20.1539,859.81 -12.8461,689.81 26,505.5C 68.5806,332.67 164.747,198.837 314.5,104C 406.481,48.2547 506.148,17.0881 613.5,10.5 Z"/></g>
 </svg>
