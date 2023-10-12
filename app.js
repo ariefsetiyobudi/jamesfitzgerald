@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 require('dotenv').config()
 
-const fetch = require('node-fetch')
+const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args))
 const logger = require('morgan')
 const express = require('express')
 const errorHandler = require('errorhandler')
